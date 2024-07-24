@@ -8,6 +8,3 @@ Spots webpage is an ongoing project that will be continuously added to in the fu
     Grid layouts
     Flexbox
     Responsive Design
-
-Included is a short clip showing the transition from desktop to mobile.
-![Responsive design](./images/demo/desktop_to_mobile.mp4)
