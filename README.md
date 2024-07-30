@@ -8,3 +8,6 @@ Spots webpage is an ongoing project that will be continuously added to in the fu
     Grid layouts
     Flexbox
     Responsive Design
+
+My Github Pages link
+https://brandimcdill.github.io/se_project_spots/
