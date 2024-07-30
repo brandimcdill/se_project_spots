@@ -11,3 +11,6 @@ Spots webpage is an ongoing project that will be continuously added to in the fu
 
 My Github Pages link
 https://brandimcdill.github.io/se_project_spots/
+
+Sprint 3 video
+https://drive.google.com/file/d/1hLJpmfhx2NDwRX5rIbU_61uQCBXmsizM/view?usp=sharing
