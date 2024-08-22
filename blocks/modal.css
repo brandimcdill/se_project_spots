@@ -11,9 +11,11 @@
   justify-content: center;
   visibility: hidden;
   padding: 0 20px;
+  display: none;
 }
 .modal_opened {
   visibility: visible;
+  display: flex;
 }
 .modal__container {
   background-color: #fff;
