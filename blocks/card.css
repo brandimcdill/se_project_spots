@@ -31,6 +31,10 @@
   font-weight: 500;
   line-height: 1.2;
   margin: 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 353px;
+  white-space: nowrap;
 }
 
 .card__like-btn {
