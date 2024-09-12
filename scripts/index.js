@@ -110,7 +110,7 @@ function getCardElement(data) {
     openModal(previewModal);
     previewModalImgEl.src = data.link;
     previewModalCaptionEl.textContent = data.name;
-    cardNameEl.alt = data.name;
+    previewModalImgEl.alt = data.name;
   });
 
   return cardElement;

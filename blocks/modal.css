@@ -12,12 +12,11 @@
   visibility: hidden;
   padding: 0 20px;
   opacity: 0;
+  transition: all 0.5s ease-in;
 }
 .modal_opened {
   visibility: visible;
   opacity: 1;
-  display: flex;
-  transition: 0.25s linear;
 }
 
 .modal__content {
