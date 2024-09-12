@@ -90,9 +90,6 @@ function getCardElement(data) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardLikeBtn = cardElement.querySelector(".card__like-btn");
   const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
-  const previewCloseBtn = previewModal.querySelector(
-    ".modal__close-btn_preview"
-  );
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;

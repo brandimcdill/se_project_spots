@@ -35,6 +35,7 @@
   background: transparent;
   position: relative;
   align-items: center;
+  display: block;
 }
 .modal__caption {
   background-color: #212121;
@@ -68,15 +69,14 @@
   height: 40px;
 }
 .modal__close-btn_preview {
-  background-image: url(../images/close-light.svg);
+  background-image: url(../images/preview_close.svg);
   top: 0;
   right: -52.5px;
-  opacity: 1;
   padding: 0;
   position: absolute;
 }
 .modal__close-btn_preview:hover {
-  opacity: 0.4;
+  background-image: url(../images/preview_close-hover.svg);
 }
 .modal__close:hover {
   opacity: 1;
@@ -119,8 +119,8 @@
 }
 @media screen and (max-width: 627px) {
   .modal {
-    padding: 0 10px;
-    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.9);
   }
   .modal__container {
     padding: 12px;
@@ -142,11 +142,13 @@
   }
   .modal__close-btn_preview {
     top: -50px;
-    right: 90px;
+    left: 264px;
   }
+
   .modal__image {
     border-radius: 4px;
     max-width: 288px;
+
     left: 16px;
   }
   .modal__caption {
