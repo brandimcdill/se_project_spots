@@ -53,6 +53,7 @@
   font-weight: 500;
   color: rgba(33, 33, 33);
 }
+
 .profile__edit-btn:hover {
   opacity: 1;
 }
