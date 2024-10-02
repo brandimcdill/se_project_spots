@@ -1,3 +1,5 @@
+//  TODO - pass settings object to the validation functions that are called in this file
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -43,7 +45,7 @@ const cardModal = document.querySelector("#add-card-modal");
 
 const cardModalCloseBtn = cardModal.querySelector(".modal__close");
 const cardForm = cardModal.querySelector(".modal__form");
-
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 const addCardSaveBtn = cardModal.querySelector(".modal__submit-btn");
@@ -68,6 +70,7 @@ function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
+  //OPTIONAL
   closeModal(editModal);
 }
 function handleAddCardSubmit(evt) {
@@ -77,8 +80,9 @@ function handleAddCardSubmit(evt) {
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
   cardList.prepend(cardElement);
-  closeModal(cardModal);
   evt.target.reset();
+  disableButton(cardSubmitBtn);
+  closeModal(cardModal);
 }
 
 function getCardElement(data) {
@@ -114,9 +118,10 @@ function getCardElement(data) {
 }
 
 profileEditBtn.addEventListener("click", () => {
-  openModal(editModal);
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editFormElement, (cardNameInput, editModalDescriptionInput));
+  openModal(editModal);
 });
 
 editModalCloseBtn.addEventListener("click", () => {
