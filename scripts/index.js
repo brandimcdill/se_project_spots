@@ -26,7 +26,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
-
+const modal = document.querySelectorAll(".modal");
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
@@ -57,20 +57,31 @@ const previewCloseBtn = previewModal.querySelector(".modal__close-btn_preview");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".cards__list");
-
+modal.forEach((modal) => {
+  function handleModalClose(evt) {
+    const modalContent = modal.querySelector(".modal__content");
+    if (!modalContent.contains(evt.target) || evt.key === "Escape") {
+      closeModal(modal);
+      document.removeEventListener("click", handleModalClose);
+    }
+  }
+  modal.addEventListener("click", handleModalClose);
+  document.addEventListener("keydown", handleModalClose);
+});
 function openModal(modal) {
   modal.classList.add("modal_opened");
+  modal.addEventListener("click", handleModalClose);
+  document.addEventListener("keydown", handleModalClose);
 }
-
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
+  document.removeEventListener("keydown", handleModalClose);
 }
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
   profileName.textContent = editModalNameInput.value;
   profileDescription.textContent = editModalDescriptionInput.value;
-  //OPTIONAL
   closeModal(editModal);
 }
 function handleAddCardSubmit(evt) {
