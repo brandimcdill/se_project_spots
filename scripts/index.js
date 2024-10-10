@@ -26,13 +26,14 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
   },
 ];
+
 const modal = document.querySelectorAll(".modal");
+const editModal = document.querySelector("#edit-profile-modal");
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
 
-const editModal = document.querySelector("#edit-profile-modal");
 const editFormElement = editModal.querySelector(".modal__form");
 
 const editModalCloseBtn = editModal.querySelector(".modal__close");
@@ -60,7 +61,7 @@ const cardList = document.querySelector(".cards__list");
 
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
-    let modal = document.querySelector(".modal_opened");
+    let modalOpen = document.querySelectorAll("modal_opened");
     closeModal(modal);
   }
 }
@@ -94,7 +95,6 @@ function handleAddCardSubmit(evt) {
   const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
   const cardElement = getCardElement(inputValues);
   cardList.prepend(cardElement);
-  disableButton(buttonEl);
   evt.target.reset();
   closeModal(modal);
 }

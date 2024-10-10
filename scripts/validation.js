@@ -29,9 +29,7 @@ const checkInputValidity = (formEl, inputEl, config) => {
 };
 
 const hasInvalidInput = (inputList) => {
-  return inputList.some((inputEl) => {
-    return !inputEl.validity.valid;
-  });
+  return inputList.some((inputEl) => !inputEl.validity.valid);
 };
 const toggleButtonState = (inputList, buttonEl) => {
   if (hasInvalidInput(inputList)) {
@@ -42,7 +40,6 @@ const toggleButtonState = (inputList, buttonEl) => {
     buttonEl.classList.remove(settings.inactiveButtonClass);
   }
 };
-
 const resetValidation = (formEl, inputList, config) => {
   inputList.forEach((inputEl) => {
     hideInputError(formEl, inputEl);
