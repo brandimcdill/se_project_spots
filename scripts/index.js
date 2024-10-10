@@ -96,7 +96,7 @@ function handleAddCardSubmit(evt) {
   const cardElement = getCardElement(inputValues);
   cardList.prepend(cardElement);
   evt.target.reset();
-  closeModal(modal);
+  closeModal(cardModal);
 }
 
 function getCardElement(data) {
