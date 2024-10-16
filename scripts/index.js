@@ -62,11 +62,10 @@ const cardList = document.querySelector(".cards__list");
 
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
-    let modalOpen = document.querySelectorAll("modal_opened");
-    closeModal(modal);
+    let modalOpen = document.querySelector(".modal_opened");
+    closeModal(modalOpen);
   }
 }
-
 function handleClickoutside(evt) {
   if (evt.target.classList.contains("modal_opened")) {
     closeModal(evt.target);
@@ -161,7 +160,7 @@ previewCloseBtn.addEventListener("click", () => {
 });
 
 editFormElement.addEventListener("submit", handleEditFormSubmit);
-buttonEl.addEventListener("submit", handleAddCardSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
