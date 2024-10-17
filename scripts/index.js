@@ -46,15 +46,15 @@ const cardModal = document.querySelector("#add-card-modal");
 
 const cardModalCloseBtn = cardModal.querySelector(".modal__close");
 const cardForm = cardModal.querySelector(".modal__form");
-const buttonEl = cardModal.querySelector(".modal__submit-btn");
-const resetBtnEl = cardModal.querySelector(".modal__submit-btn_disabled");
+const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
+const disabledBtnEl = cardModal.querySelector(".modal__submit-btn_disabled");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImgEl = previewModal.querySelector(".modal__image");
 const previewModalCaptionEl = previewModal.querySelector(".modal__caption");
-const previewCloseBtn = previewModal.querySelector(".modal__close-btn_preview");
+const previewCloseBtn = previewModal.querySelector(".modal__close_preview");
 const inputEl = cardForm.querySelector(".modal__input");
 
 const cardTemplate = document.querySelector("#card-template");
@@ -62,23 +62,23 @@ const cardList = document.querySelector(".cards__list");
 
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
-    let modalOpen = document.querySelector(".modal_opened");
+    const modalOpen = document.querySelector(".modal_opened");
     closeModal(modalOpen);
   }
 }
-function handleClickoutside(evt) {
+function handleClickOutside(evt) {
   if (evt.target.classList.contains("modal_opened")) {
     closeModal(evt.target);
   }
 }
 function openModal(modal) {
   modal.classList.add("modal_opened");
-  modal.addEventListener("click", handleClickoutside);
+  modal.addEventListener("click", handleClickOutside);
   document.addEventListener("keydown", handleEscClose);
 }
 function closeModal(modal) {
   modal.classList.remove("modal_opened");
-  document.removeEventListener("click", handleClickoutside);
+  modal.removeEventListener("click", handleClickOutside);
   document.removeEventListener("keydown", handleEscClose);
 }
 
@@ -97,7 +97,7 @@ function handleAddCardSubmit(evt) {
   cardList.prepend(cardElement);
   closeModal(cardModal);
   evt.target.reset();
-  buttonEl.disabled = true;
+  disableButton(cardSubmitBtn);
 }
 
 function getCardElement(data) {

@@ -31,13 +31,17 @@ const checkInputValidity = (formEl, inputEl, config) => {
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputEl) => !inputEl.validity.valid);
 };
-const toggleButtonState = (inputList, buttonEl) => {
+const disableButton = (cardSubmitBtn) => {
+  cardSubmitBtn.classList.add(settings.inactiveButtonClass);
+  cardSubmitBtn.disabled = true;
+};
+const toggleButtonState = (inputList, cardSubmitBtn) => {
   if (hasInvalidInput(inputList)) {
-    buttonEl.disabled = true;
-    buttonEl.classList.add(settings.inactiveButtonClass);
+    cardSubmitBtn.disabled = true;
+    cardSubmitBtn.classList.add(settings.inactiveButtonClass);
   } else {
-    buttonEl.disabled = false;
-    buttonEl.classList.remove(settings.inactiveButtonClass);
+    cardSubmitBtn.disabled = false;
+    cardSubmitBtn.classList.remove(settings.inactiveButtonClass);
   }
 };
 const resetValidation = (formEl, inputList, config) => {
@@ -48,20 +52,20 @@ const resetValidation = (formEl, inputList, config) => {
 //TODO - use the settings object in all functions instead of hard-coded strings
 const setEventListeners = (formEl) => {
   const inputList = Array.from(formEl.querySelectorAll(settings.inputSelector));
-  const buttonElement = formEl.querySelector(settings.submitButtonSelector);
+  const cardSubmitBtn = formEl.querySelector(settings.submitButtonSelector);
 
   //TODO - handle initial states
-  toggleButtonState(inputList, buttonEl);
+  toggleButtonState(inputList, cardSubmitBtn);
 
   inputList.forEach((inputEl) => {
     inputEl.addEventListener("input", function () {
       checkInputValidity(formEl, inputEl);
-      toggleButtonState(inputList, buttonEl);
+      toggleButtonState(inputList, cardSubmitBtn);
     });
   });
 };
 const enableValidation = (config) => {
-  const formList = document.querySelectorAll(settings.formSelector);
+  const formList = document.querySelectorAll(config.formSelector);
   formList.forEach((formEl) => {
     setEventListeners(formEl);
   });

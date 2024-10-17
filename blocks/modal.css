@@ -68,14 +68,14 @@
   width: 40px;
   height: 40px;
 }
-.modal__close-btn_preview {
+.modal__close_preview {
   background-image: url(../images/preview_close.svg);
   top: 0;
   right: -52.5px;
   padding: 0;
   position: absolute;
 }
-.modal__close-btn_preview:hover {
+.modal__close_preview:hover {
   background-image: url(../images/preview_close-hover.svg);
 }
 .modal__close:hover {
