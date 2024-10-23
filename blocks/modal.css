@@ -106,7 +106,7 @@
   color: #212121;
   border-radius: 8px;
 }
-.modal__input_type_error {
+.modal__input_error {
   border: 1px solid rgba(255, 0, 0, 0.6);
 }
 .modal__error {
@@ -150,7 +150,7 @@
     background-color: rgba(0, 0, 0, 0.9);
   }
   .modal__content {
-    padding: 0 12px;
+    padding: 12px;
   }
   .modal__title {
     font-size: 20px;
