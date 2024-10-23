@@ -27,7 +27,7 @@ const initialCards = [
   },
 ];
 
-const modal = document.querySelectorAll(".modal");
+const modal = document.querySelector(".modal");
 const editModal = document.querySelector("#edit-profile-modal");
 const profileEditBtn = document.querySelector(".profile__edit-btn");
 const cardModalBtn = document.querySelector(".profile__add-btn");
@@ -46,7 +46,7 @@ const cardModal = document.querySelector("#add-card-modal");
 
 const cardModalCloseBtn = cardModal.querySelector(".modal__close");
 const cardForm = cardModal.querySelector(".modal__form");
-const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
+const submitBtn = cardModal.querySelector(".modal__submit-btn");
 const disabledBtnEl = cardModal.querySelector(".modal__submit-btn_disabled");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
@@ -97,7 +97,7 @@ function handleAddCardSubmit(evt) {
   cardList.prepend(cardElement);
   closeModal(cardModal);
   evt.target.reset();
-  disableButton(cardSubmitBtn);
+  disableButton(submitBtn, config);
 }
 
 function getCardElement(data) {
