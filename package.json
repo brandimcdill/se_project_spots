@@ -1,11 +1,14 @@
 {
   "name": "se_project_spots",
+  "homepage": "https://brandimcdill.github.io/se_project_spots/",
   "version": "0.1.0",
   "description": "Spots webpage is an ongoing project that will be continuously added to in the future. The finished project was made using HTML and CSS, while the initial brief was made in Figma. This webpage seems to be the startings of a social media site.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack serve --mode development"
+    "dev": "webpack serve --mode development",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "author": "Brandi McDill",
   "license": "ISC",
@@ -17,6 +20,7 @@
     "clean-webpack-plugin": "4.0.0",
     "css-loader": "6.7.1",
     "cssnano": "5.1.12",
+    "gh-pages": "^6.3.0",
     "html-webpack-plugin": "5.5.0",
     "mini-css-extract-plugin": "2.6.1",
     "postcss-loader": "7.0.1",
