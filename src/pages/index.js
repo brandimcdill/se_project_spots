@@ -9,11 +9,14 @@ import Api from "../utils/Api.js";
 import logoSpots from "../images/logo.svg";
 import bessieAvatar from "../images/avatar.jpg";
 import pencilImage from "../images/pencil.svg";
+import avatarPencil from "../images/pencil-light.svg";
 import plusIcon from "../images/plus.svg";
 const spotsImage = document.getElementById("logoSpots");
 spotsImage.src = logoSpots;
 const pencil = document.getElementById("pencilImage");
 pencil.src = pencilImage;
+const lightPencil = document.getElementById("avatarPencil");
+lightPencil.src = avatarPencil;
 const addImage = document.getElementById("plusIcon");
 addImage.src = plusIcon;
 const bessieImage = document.getElementById("bessieAvatar");
@@ -76,7 +79,6 @@ const api = new Api({
 
 window.api = api;
 
-//Destructure the second item in the callback of the .then()
 api
   .getAppInfo()
   .then(([cards, { name, about, avatar }]) => {
