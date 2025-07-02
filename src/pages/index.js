@@ -79,7 +79,7 @@ cardLinkInput.addEventListener("input", disableButton);
 const api = new Api({
   baseURL: "https://around-api.en.tripleten-services.com/v1",
   headers: {
-    authorization: "ccc1108b-0e43-4488-be9b-8eb1c8ff494e",
+    authorization: "ae624f98-22e3-40e2-ad55-6bf11082a736",
     "Content-Type": "application/json",
   },
 });
@@ -135,7 +135,6 @@ function disableButton(evt) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-
   const submitBtn = evt.submitter;
   setBtnText(submitBtn, true, "Save", "Saving...");
   api
@@ -155,10 +154,7 @@ function handleEditFormSubmit(evt) {
 }
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  console.log(cardNameInput.value);
-  console.log(cardLinkInput.value);
   const data = { name: cardNameInput.value, link: cardLinkInput.value };
-
   api
     .addNewCard(data)
     .then((data) => {
@@ -171,7 +167,6 @@ function handleAddCardSubmit(evt) {
     .catch(console.error);
 }
 
-//TODO- Finish avatar submission handler
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
   console.log(avatarInput.value);
@@ -179,7 +174,7 @@ function handleAvatarSubmit(evt) {
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
       console.log(data);
-      // TODO - make this work
+      profileAvatar.src = data.avatar;
       closeModal(avatarModal);
     })
     .catch(console.error);
