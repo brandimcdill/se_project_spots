@@ -32,7 +32,7 @@ const hasInvalidInput = (inputList) => {
     return !inputEl.validity.valid;
   });
 };
-const disableButton = (submitBtn, config) => {
+export const disableButton = (submitBtn, config) => {
   submitBtn.classList.add(config.inactiveButtonClass);
   submitBtn.setAttribute("disabled", true);
 };
