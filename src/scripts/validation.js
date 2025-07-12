@@ -19,7 +19,7 @@ const hideInputError = (formEl, inputEl, config) => {
   errorMsgEl.textContent = "";
 };
 
-const checkInputValidity = (formEl, inputEl, config) => {
+export const checkInputValidity = (formEl, inputEl, config) => {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
@@ -32,7 +32,7 @@ const hasInvalidInput = (inputList) => {
     return !inputEl.validity.valid;
   });
 };
-const disableButton = (submitBtn, config) => {
+export const disableButton = (submitBtn, config) => {
   submitBtn.classList.add(config.inactiveButtonClass);
   submitBtn.setAttribute("disabled", true);
 };

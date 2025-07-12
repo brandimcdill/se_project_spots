@@ -20,6 +20,69 @@
 .card__delete-btn:hover {
   background: transparent url(../images/delete__hover.png);
 }
+.card__delete-form_close {
+  background-image: url(../images/preview_close.svg);
+  border: none;
+  background-color: transparent;
+  opacity: 0.8;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: -52.5px;
+  padding: 0;
+  position: absolute;
+}
+.card__delete-form {
+  max-width: 630px;
+  max-height: 172px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 0;
+}
+.delete_modal__content {
+  background-color: #fff;
+  padding: 32px 20px;
+  max-width: 730px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  font-family: Poppins;
+}
+.card__delete-title {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1;
+  margin: 0px 0px 30px 0px;
+  display: flex;
+  justify-content: space-around;
+}
+.card__submit-btn {
+  font-size: 16px;
+  line-height: 1;
+  gap: 8px;
+  align-items: center;
+}
+.card__submit-btn_delete {
+  width: 156px;
+  height: 52px;
+  padding: 18px 32px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff6565;
+  font-weight: 500;
+}
+.card__submit-btn_cancel {
+  width: 156px;
+  height: 52px;
+  padding: 18px 32px;
+  border-radius: 8px;
+  font-weight: 500;
+  border-width: 1px;
+  background-color: transparent;
+}
 .card__content {
   display: flex;
   align-items: center;
