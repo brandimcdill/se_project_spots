@@ -4,6 +4,7 @@ import {
   resetValidation,
   validationConfig,
   disableButton,
+  checkInputValidity,
 } from "../scripts/validation.js";
 import { setBtnText, handleSubmit } from "../utils/helpers.js";
 import Api from "../utils/Api.js";
@@ -74,8 +75,12 @@ const cardList = document.querySelector(".cards__list");
 let selectedCard;
 let selectedCardId;
 
-cardNameInput.addEventListener("input", validationConfig);
-cardLinkInput.addEventListener("input", validationConfig);
+cardNameInput.addEventListener("input", (evt) =>
+  checkInputValidity(cardForm, cardNameInput, validationConfig)
+);
+cardLinkInput.addEventListener("input", (evt) =>
+  checkInputValidity(cardForm, cardLinkInput, validationConfig)
+);
 
 const api = new Api({
   baseURL: "https://around-api.en.tripleten-services.com/v1",
@@ -100,7 +105,6 @@ function getCardElement(data) {
   cardImageEl.alt = data.name;
 
   cardLikeBtn.addEventListener("click", (evt) => handleLike(evt, data._id));
-  console.log(data._id);
   cardDeleteBtn.addEventListener("click", (evt) =>
     handleDeleteCard(evt, data._id)
   );
@@ -112,7 +116,6 @@ function getCardElement(data) {
 api
   .getAppInfo()
   .then(([cards, { name, about, avatar }]) => {
-    console.log(cards);
     cards.forEach((item) => {
       const cardElement = getCardElement(item);
       cardList.append(cardElement);
@@ -121,10 +124,9 @@ api
     profileDescription.textContent = about;
     profileAvatar.src = avatar;
   })
-  .catch(console.error);
-
-console.log("API instance created:", api);
-console.log("getAppInfo method exists:", typeof api.getAppInfo);
+  .catch((error) => {
+    console.error("Failed to fetch card data:", error);
+  });
 
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
@@ -161,47 +163,54 @@ function handleEditFormSubmit(evt) {
       profileName.textContent = data.name;
       profileDescription.textContent = data.about;
       closeModal(editModal);
-      disableButton(cardSubmitBtn, handleSubmit);
+      disableButton(submitBtn, validationConfig);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to fetch form data:", error);
+    })
     .finally(() => {
       setBtnText(submitBtn, false, "Save", "Saving...");
     });
 }
 function handleAddCardSubmit(evt) {
   evt.preventDefault();
-  function makeRequest() {
-    const data = { name: cardNameInput.value, link: cardLinkInput.value };
-    const submitBtn = evt.submitter;
-    setBtnText(submitBtn, true, "Save", "Saving...");
-    return api.addNewCard(data).then((data) => {
+  const data = { name: cardNameInput.value, link: cardLinkInput.value };
+  const submitBtn = evt.submitter;
+  setBtnText(submitBtn, true, "Save", "Saving...");
+  return api
+    .addNewCard(data)
+    .then((data) => {
       const cardElement = getCardElement(data);
       cardList.prepend(cardElement);
       closeModal(cardModal);
       evt.target.reset();
-      disableButton(cardSubmitBtn, handleSubmit);
+      disableButton(cardSubmitBtn, validationConfig);
+    })
+    .catch((error) => {
+      console.error("Failed to fetch card data:", error);
+    })
+    .finally(() => {
+      setBtnText(submitBtn, false, "Save", "Saving...");
     });
-  }
-  handleSubmit(makeRequest, evt);
 }
 
 function handleAvatarSubmit(evt) {
   evt.preventDefault();
-  console.log(avatarInput.value);
   api
     .editAvatarInfo(avatarInput.value)
     .then((data) => {
-      console.log(data);
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
+      evt.target.reset();
     })
-    .catch(console.error);
+    .catch((error) => {
+      console.error("Failed to fetch avatar data:", error);
+    });
 }
 
 function handleDeleteCard(evt, cardId) {
   selectedCard = evt.target.closest(".card");
   selectedCardId = cardId;
-  console.log(cardId);
   openModal(deleteModal);
 }
 
@@ -209,18 +218,15 @@ function handleDeleteSubmit(evt) {
   evt.preventDefault();
   const deleteBtn = evt.submitter;
   setBtnText(deleteBtn, true, "Delete", "Deleting...");
-
-  console.log("selectedCard:", selectedCard);
-  console.log("Type of selectedCard:", typeof selectedCard);
-  console.log(selectedCardId);
-  console.log("About to delete card with ID:", selectedCardId);
   api
     .deleteCard(selectedCardId)
     .then(() => {
       selectedCard.remove();
       closeModal(deleteModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to fetch Card Id data:", error);
+    })
     .finally(() => {
       setBtnText(deleteBtn, false, "Delete", "Deleting...");
     });
@@ -239,7 +245,9 @@ function handleLike(evt, id) {
         cardLikeBtn.classList.remove("card__like-btn_liked");
       }
     })
-    .catch(console.error);
+    .catch((error) => {
+      console.error("Failed to fetch like data:", error);
+    });
 }
 
 function handleImageClick(data) {

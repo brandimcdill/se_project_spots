@@ -19,7 +19,7 @@ const hideInputError = (formEl, inputEl, config) => {
   errorMsgEl.textContent = "";
 };
 
-const checkInputValidity = (formEl, inputEl, config) => {
+export const checkInputValidity = (formEl, inputEl, config) => {
   if (!inputEl.validity.valid) {
     showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
