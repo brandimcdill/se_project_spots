@@ -202,6 +202,7 @@ function handleAvatarSubmit(evt) {
       profileAvatar.src = data.avatar;
       closeModal(avatarModal);
       evt.target.reset();
+      disableButton(avatarSubmitBtn, validationConfig);
     })
     .catch((error) => {
       console.error("Failed to fetch avatar data:", error);
